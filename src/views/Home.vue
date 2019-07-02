@@ -1,13 +1,23 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
+    <span @click.prevent="logout">Log Out</span>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import firebase from "firebase";
 
 export default {
-  name: 'home'
-}
+  name: "home",
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => this.$router.replace("login"))
+        .catch(err => console.log(err));
+    }
+  }
+};
 </script>

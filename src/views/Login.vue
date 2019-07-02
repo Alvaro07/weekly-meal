@@ -1,25 +1,35 @@
 <template>
   <div>
-    <form @click.prevent="login">
-      <input type="text" v-model="user">
-      <input type="email">
+    <form @submit.prevent="login">
+      <input type="email" v-model="email">
+      <input type="password" v-model="password">
       <button type="submit">Acceder</button>
     </form>
+    <div v-if="error">{{ error }}</div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "login",
   data() {
     return {
-      user: null,
-      email: null
-    }
+      email: null,
+      password: null,
+      error: null
+    };
   },
   methods: {
     login() {
-      console.log(this.user)
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          this.$router.push("home");
+        })
+        .catch(err => (this.error = err.message));
     }
   }
 };
