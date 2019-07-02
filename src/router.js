@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import firebase from "firebase";
 
-import Home from "./views/Home.vue";
+import Dashboard from "./views/Dashboard.vue";
 import Login from "./views/Login.vue";
 
 Vue.use(Router);
@@ -25,9 +25,9 @@ const router = new Router({
       component: Login
     },
     {
-      path: "/home",
-      name: "home",
-      component: Home,
+      path: "/dashboard",
+      name: "dashboard",
+      component: Dashboard,
       meta: {
         isAuth: true
       }
@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
   if (authRequired && !user) {
     next("login");
   } else if (to.name === "login" && user) {
-    next("home");
+    next("dashboard");
   } else {
     next();
   }

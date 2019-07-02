@@ -4,8 +4,11 @@ import router from "./router";
 import store from "./store";
 import firebase from "firebase";
 import "./registerServiceWorker";
+import { library } from "./utils/icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 Vue.config.productionTip = false;
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 var firebaseConfig = {
   apiKey: "AIzaSyACZLcOM9y301oCOlYD_F14FRRLUzF2U2w",
