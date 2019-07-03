@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Paytone+One&display=swap");
 
-
 /**
  * Base styles
  */
@@ -20,7 +19,9 @@ html {
   font-family: "Roboto";
 }
 
-input, button, textarea {
+input,
+button,
+textarea {
   font-family: "Roboto";
   color: $darkGrey;
 }
@@ -36,4 +37,15 @@ body {
 
 p {
   line-height: normal;
+}
+
+a {
+  --color: #{$lightGreen};
+
+  color: var(--color);
+  transition: .3s all ease;
+
+  &:hover {
+    --color: #{$green};
+  }
 }
