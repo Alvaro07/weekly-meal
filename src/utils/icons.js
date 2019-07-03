@@ -1,7 +1,7 @@
 /*/ Font awesome Icons /*/
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faSignOutAlt, faUtensils, faDrumstickBite, faHamburger, faUserCircle,
+  faSignOutAlt, faUtensils, faDrumstickBite, faHamburger, faUserCircle, faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -9,7 +9,8 @@ library.add(
   faUtensils,
   faDrumstickBite,
   faHamburger,
-  faUserCircle
+  faUserCircle,
+  faBars
 );
 
 export default library;

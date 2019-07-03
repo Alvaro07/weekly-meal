@@ -12,7 +12,6 @@
       <div v-if="error" class="login__form__error">{{ error }}</div>
 
       <v-button
-        submitType
         text="Access to your menu"
         variant="orange"
         @onClick="login"

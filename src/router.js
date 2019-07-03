@@ -44,11 +44,10 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   let user = firebase.auth().currentUser;
   let authRequired = to.matched.some(record => record.meta.isAuth);
-  console.log();
 
   if (authRequired && !user) {
     next("login");
-  } else if (to.name === "login" && user || to.name === "register" && user) {
+  } else if ((to.name === "login" || to.name === "register") && user) {
     next("dashboard");
   } else {
     next();

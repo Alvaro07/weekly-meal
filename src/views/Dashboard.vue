@@ -1,23 +1,16 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <span @click.prevent="logout">Log Out</span>
+    <NavHeader></NavHeader>
   </div>
 </template>
 
 <script>
-import firebase from "firebase";
+import NavHeader from "../components/NavHeader";
 
 export default {
-  name: "home",
-  methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => this.$router.replace("login"))
-        .catch(err => console.log(err));
-    }
+  name: "dashboard",
+  components: {
+    NavHeader
   }
 };
 </script>
