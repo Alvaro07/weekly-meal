@@ -21,6 +21,8 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+export const database = firebase.firestore();
+
 firebase.auth().onAuthStateChanged(() => {
   new Vue({
     router,

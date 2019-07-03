@@ -4,6 +4,7 @@ import firebase from "firebase";
 
 import Dashboard from "./views/Dashboard.vue";
 import Login from "./views/Login.vue";
+import Register from "./views/Register.vue";
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ const router = new Router({
       component: Login
     },
     {
+      path: "/register",
+      name: "register",
+      component: Register
+    },
+    {
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
@@ -42,7 +48,7 @@ router.beforeEach((to, from, next) => {
 
   if (authRequired && !user) {
     next("login");
-  } else if (to.name === "login" && user) {
+  } else if (to.name === "login" && user || to.name === "register" && user) {
     next("dashboard");
   } else {
     next();

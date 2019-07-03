@@ -1,30 +1,47 @@
 <template>
   <section class="login">
-    <h1 class="login__logo">
-      <span class="login__logo__icon">
-        <font-awesome-icon icon="utensils"/>
-      </span>
-      <span class="login__logo__text">
-        W
-        <em>ee</em>kly M
-        <em>e</em>al
-      </span>
-    </h1>
+    <Logo></Logo>
+    <form class="login__form">
+      <InputField placeholder="Email" type="text" v-model="email"></InputField>
+      <InputField
+        type="password"
+        extraClass="margin-top-20"
+        placeholder="Password"
+        v-model="password"
+      ></InputField>
+      <div v-if="error" class="login__form__error">{{ error }}</div>
 
-    <!-- <form @submit.prevent="login">
-        <input type="email" v-model="email">
-        <input type="password" v-model="password">
-        <button type="submit">Acceder</button>
-      </form>
-    <div v-if="error">{{ error }}</div>-->
+      <v-button
+        submitType
+        text="Access to your menu"
+        variant="orange"
+        @onClick="login"
+        extraClass="margin-top-30 margin-bottom-20"
+        icon="hamburger"
+      ></v-button>
+
+      <p>
+        You do not have an account?
+        <br>
+        <router-link to="/register" class="bold">Register now!</router-link>
+      </p>
+    </form>
   </section>
 </template>
 
 <script>
 import firebase from "firebase";
+import Logo from "../components/Logo";
+import InputField from "../components/InputField";
+import Button from "../components/Button";
 
 export default {
   name: "login",
+  components: {
+    InputField,
+    "v-button": Button,
+    Logo
+  },
   data() {
     return {
       email: null,
@@ -58,56 +75,26 @@ export default {
   padding: 15px;
 
   /*
-  * Login logo
+  * Form
   */
 
-  &__logo {
-    --logo-font-size: 4.2rem;
+  &__form {
+    --logo-separation: 30px;
 
-    display: flex;
-    align-items: center;
-
-    color: $darkGreen;
-    font-family: $paytone;
-    letter-spacing: -1.9px;
-    font-size: var(--logo-font-size);
-    text-shadow: 1px 1px white;
-    margin-bottom: var(--logo-margin);
+    width: 100%;
+    max-width: 250px;
+    margin-top: var(--logo-separation);
 
     @include mediaTablet {
-      --logo-font-size: 5.5rem;
+      --logo-separation: 40px;
     }
 
-    &__icon {
-      --icon-width: 60px;
-      --icon-height: 60px;
-      --logo-icon-size: 3rem;
+    &__error {
+      color: $orange;
+      font-size: 1.4rem;
+      font-weight: bold;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: var(--icon-width);
-      height: var(--icon-height);
-      margin-right: 10px;
-
-      font-size: var(--logo-icon-size);
-      border-radius: 50%;
-      color: $beige;
-      background-color: $orange;
-
-      @include mediaTablet {
-        --icon-width: 70px;
-        --icon-height: 70px;
-        --logo-icon-size: 4.2rem;
-      }
-    }
-
-    &__text {
-      em {
-        color: $orange;
-        display: inline-block;
-      }
+      padding-top: 20px;
     }
   }
 }
