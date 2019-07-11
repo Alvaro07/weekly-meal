@@ -36,12 +36,11 @@ export default {
   width: 100%;
   position: sticky;
   top: 0;
-
   background-color: white;
-  padding: 10px 15px;
 
   &__wrap {
-    max-width: 1400px;
+    max-width: 1280px;
+    padding: 10px 15px;
     margin: 0 auto;
 
     display: flex;

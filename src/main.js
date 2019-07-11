@@ -1,7 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store/store";
+import filters from "./filters";
 import firebase from "firebase";
 import "./registerServiceWorker";
 import { library } from "./utils/icons";
@@ -22,6 +23,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 export const database = firebase.firestore();
+
 
 firebase.auth().onAuthStateChanged(() => {
   new Vue({

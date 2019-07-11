@@ -68,6 +68,7 @@ export default {
     text-shadow: 2px 2px white;
     color: $darkGreen;
     font-family: $paytone;
+    user-select: none;
 
     em {
       color: $orange;
