@@ -117,9 +117,8 @@ export default {
 
   &--disabled {
     pointer-events: none;
-    --bg-color: #ccc;
-    --border-color: #ccc;
-    --font-color: #{rgba($grey, 0.3)};
+    opacity: 0.5;
+    user-select: none;
   }
 
   /**

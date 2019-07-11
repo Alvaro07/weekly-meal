@@ -10,21 +10,43 @@
     </main>
 
     <Modal v-show="modal.isOpen && modal.name === 'modal-add'" @close="closeModal" title="Add Meal">
-      <div>
+      <form>
         <Tag type="breakfast" extraClass="margin-right-10" @onClick="selectTag" ref="breakfast"/>
         <Tag type="lunch" extraClass="margin-right-10" @onClick="selectTag" ref="lunch"/>
         <Tag type="dinner" @onClick="selectTag" ref="dinner"/>
-      </div>
+
+        <InputField
+          type="text"
+          label="Your meal:"
+          extraClass="margin-top-30"
+          disabled
+          ref="inputMeal"
+          @input="e => onKeyUpMeal(e)"
+        />
+
+        <Button
+          text="Add your meal"
+          icon="drumstick-bite"
+          small
+          extraClass="margin-top-30"
+          variant="orange"
+          ref="addMealButton"
+          disabled
+        />
+      </form>
     </Modal>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { eventBus } from "../event-bus.js";
 import NavHeader from "../components/NavHeader";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import Tag from "../components/Tag";
+import InputField from "../components/InputField";
+import Button from "../components/Button";
 
 export default {
   name: "dashboard",
@@ -32,7 +54,9 @@ export default {
     NavHeader,
     Card,
     Modal,
-    Tag
+    Tag,
+    InputField,
+    Button
   },
   data() {
     return {
@@ -40,7 +64,10 @@ export default {
         name: null,
         isOpen: false
       },
-      activeTag: null
+      addMealForm: {
+        activeTag: null,
+        meal: null
+      }
     };
   },
   methods: {
@@ -48,22 +75,39 @@ export default {
       this.modal = { name: modal, isOpen: true };
     },
     closeModal() {
+      this.disableTags();
+      this.addMealForm.meal = null;
+      eventBus.$emit("resetField");
+      this.$refs.addMealButton.disabledButton();
+      this.$refs.inputMeal.disable();
       this.modal = { name: null, isOpen: false };
     },
     selectTag(e) {
       if (this.$refs[e].isActive) {
         this.disableTags();
-        this.activeTag = null;
+        this.addMealForm.activeTag = null;
+        this.$refs.inputMeal.disable();
+        this.$refs.addMealButton.disabledButton();
       } else {
         this.disableTags();
         this.$refs[e].selectTag(true);
-        this.activeTag = e;
+        this.addMealForm.activeTag = e;
+        this.$refs.inputMeal.activate();
+        if (this.addMealForm.length > 1) this.$refs.addMealButton.activeButton();
       }
     },
     disableTags() {
       this.$refs.breakfast.selectTag(false);
       this.$refs.lunch.selectTag(false);
       this.$refs.dinner.selectTag(false);
+    },
+    onKeyUpMeal(e) {
+      this.addMealForm.meal = e;
+      if (this.addMealForm.meal.length > 0) {
+        this.$refs.addMealButton.activeButton();
+      } else {
+        this.$refs.addMealButton.disabledButton();
+      }
     }
   },
   computed: mapState(["board"])
