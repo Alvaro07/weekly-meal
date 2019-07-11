@@ -3,7 +3,7 @@
     v-if="type === 'buttonLink'"
     :href="href"
     class="c-button"
-    :class="[{'c-button--big ': big}, {'c-button--disabled ': isDisabled}, variantClass, extraClass, {' c-button--full-width': fullWidth}]"
+    :class="[{'c-button--small ': small}, {'c-button--disabled ': isDisabled}, variantClass, extraClass, {' c-button--full-width': fullWidth}]"
   >
     <font-awesome-icon v-if="icon" :icon="icon" class="c-button__icon"/>
     <span v-if="text" class="c-button__text">{{ text }}</span>
@@ -13,8 +13,7 @@
     v-else
     class="c-button"
     @click.prevent="onButtonClick"
-    :class="[{'c-button--big ': big}, {'c-button--disabled ': isDisabled}, variantClass, extraClass, {' c-button--full-width': fullWidth}]"
-    :type="submitType ? 'submit' : null"
+    :class="[{'c-button--small ': small}, {'c-button--disabled ': isDisabled}, variantClass, extraClass, {' c-button--full-width': fullWidth}]"
   >
     <font-awesome-icon v-if="icon" :icon="icon" class="c-button__icon"/>
     <span v-if="text" class="c-button__text">{{ text }}</span>
@@ -31,11 +30,10 @@ export default {
     href: String,
     icon: String,
     extraClass: String,
-    big: Boolean,
+    small: Boolean,
     disabled: Boolean,
     variant: String,
-    fullWidth: Boolean,
-    submitType: Boolean
+    fullWidth: Boolean
   },
   data() {
     return {
@@ -110,10 +108,10 @@ export default {
     justify-content: center;
   }
 
-  &--big {
-    --padding-size: 15px 30px;
-    --font-text: 1.8rem;
-    --icon-size: 2.2rem;
+  &--small {
+    --padding-size: 10px;
+    --font-text: 1.4rem;
+    --icon-size: 1.6rem;
     --icon-space: 15px;
   }
 
