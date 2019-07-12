@@ -11,17 +11,17 @@
 $positions: ("", "-top", "-right", "-bottom", "-left");
 
 @each $pos in $positions {
-  @for $i from 1 through 3 {
-    .padding#{$pos}-#{$i * 10} {
-      padding#{$pos}: #{$i * 10}px;
+  @for $i from 1 through 6 {
+    .padding#{$pos}-#{$i * 5} {
+      padding#{$pos}: #{$i * 5}px;
     }
   }
 }
 
 @each $pos in $positions {
-  @for $i from 1 through 3 {
-    .margin#{$pos}-#{$i * 10} {
-      margin#{$pos}: #{$i * 10}px;
+  @for $i from 1 through 6 {
+    .margin#{$pos}-#{$i * 5} {
+      margin#{$pos}: #{$i * 5}px;
     }
   }
 }

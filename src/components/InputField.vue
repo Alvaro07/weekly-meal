@@ -20,30 +20,12 @@ import { eventBus } from "../event-bus.js";
 export default {
   name: "input-field",
   props: {
-    type: {
-      type: String,
-      required: true
-    },
-    value: {
-      type: String,
-      required: false
-    },
-    extraClass: {
-      type: String,
-      required: false
-    },
-    label: {
-      type: String,
-      required: false
-    },
-    placeholder: {
-      type: String,
-      required: false
-    },
-    disabled: {
-      type: Boolean,
-      required: false
-    }
+    type: String,
+    value: String,
+    extraClass: String,
+    label: String,
+    placeholder: String,
+    disabled: Boolean
   },
   data() {
     return {
@@ -68,7 +50,6 @@ export default {
   updated() {
     eventBus.$on("resetField", () => {
       this.content = null;
-      // this.$refs.field.value = null;
     });
   }
 };

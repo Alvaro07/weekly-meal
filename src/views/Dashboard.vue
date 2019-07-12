@@ -4,9 +4,9 @@
     <main class="dashboard">
       <ul class="dashboard__list">
         <li v-for="(item, index) in board.days" :key="index">
-          <Card :day="item.day" @addMeal="() => openModal('modal-add', item.day)"></Card>
-        </li>
-      </ul>
+          <Card :day="item.title" @addMeal="() => openModal('modal-add', item.title)"></Card>
+        </li > 
+      </ul> 
     </main>
 
     <Modal v-show="modal.isOpen && modal.name === 'modal-add'" @close="closeModal" title="Add Meal">
@@ -32,7 +32,9 @@
           variant="orange"
           ref="addMealButton"
           disabled
+          @onClick="() => addMeal()"
         />
+
       </form>
     </Modal>
   </div>
@@ -62,21 +64,26 @@ export default {
     return {
       modal: {
         name: null,
-        isOpen: false
+        isOpen: false,
+        thisDay: null
       },
-      addMealForm: {
+      addForm: {
         activeTag: null,
         meal: null
       }
     };
   },
   methods: {
+    /*
+    /* Modal add meal methods
+    */
+
     openModal(modal, day) {
-      this.modal = { name: modal, isOpen: true };
+      this.modal = { name: modal, isOpen: true, thisDay: day };
     },
     closeModal() {
       this.disableTags();
-      this.addMealForm.meal = null;
+      this.addForm.meal = null;
       eventBus.$emit("resetField");
       this.$refs.addMealButton.disabledButton();
       this.$refs.inputMeal.disable();
@@ -85,15 +92,15 @@ export default {
     selectTag(e) {
       if (this.$refs[e].isActive) {
         this.disableTags();
-        this.addMealForm.activeTag = null;
+        this.addForm.activeTag = null;
         this.$refs.inputMeal.disable();
         this.$refs.addMealButton.disabledButton();
       } else {
         this.disableTags();
         this.$refs[e].selectTag(true);
-        this.addMealForm.activeTag = e;
+        this.addForm.activeTag = e;
         this.$refs.inputMeal.activate();
-        if (this.addMealForm.length > 1) this.$refs.addMealButton.activeButton();
+        if (this.addForm.length > 1) this.$refs.addMealButton.activeButton();
       }
     },
     disableTags() {
@@ -102,12 +109,21 @@ export default {
       this.$refs.dinner.selectTag(false);
     },
     onKeyUpMeal(e) {
-      this.addMealForm.meal = e;
-      if (this.addMealForm.meal.length > 0) {
+      this.addForm.meal = e;
+      if (this.addForm.meal.length > 0) {
         this.$refs.addMealButton.activeButton();
       } else {
         this.$refs.addMealButton.disabledButton();
       }
+    },
+    addMeal() {
+      let data = {
+        day: this.modal.thisDay,
+        type: this.addForm.activeTag,
+        meal: this.addForm.meal
+      };
+      this.$store.commit("addDayMeal", data);
+      this.closeModal();
     }
   },
   computed: mapState(["board"])

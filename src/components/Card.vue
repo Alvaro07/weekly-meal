@@ -1,40 +1,60 @@
 <template>
   <div class="c-card">
     <header class="c-card__header">
-      <h3 class="c-card__header__day">{{ day }}</h3>
+      <h3 class="c-card__header__day">{{ day | capitalize }}</h3>
       <span class="c-card__header__add-button" @click.prevent="addMeal">
         <font-awesome-icon icon="plus-square"/>
       </span>
     </header>
+    <main class="c-card__content">
+      <div class="c-card__content__item" v-if="breakfast">
+        <Tag small type="breakfast" extraClass="margin-bottom-5"/>
+        <p>{{breakfast}}</p>
+      </div>
+      <div class="c-card__content__item" v-if="lunch">
+        <Tag small type="lunch" extraClass="margin-bottom-5"/>
+        <p>{{lunch}}</p>
+      </div>
+      <div class="c-card__content__item" v-if="dinner">
+        <Tag small type="dinner" extraClass="margin-bottom-5"/>
+        <p>{{dinner}}</p>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import Tag from "./Tag";
+
 export default {
   name: "Card",
+  components: {
+    Tag
+  },
   props: {
     day: {
-      validator: value => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].indexOf(value) !== -1,
+      validator: value => ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].indexOf(value) !== -1,
       required: true
-    },
-    breakfast: {
-      type: "String",
-      required: false
-    },
-    lunch: {
-      type: "String",
-      required: false
-    },
-    dinner: {
-      type: "String",
-      required: false
     }
   },
   methods: {
     addMeal() {
-      this.$emit('addMeal')
+      this.$emit("addMeal");
     }
   },
+  computed: {
+    ...mapState(["board"]),
+    breakfast() {
+      return this.board.days[this.day].breakfast;
+    },
+    lunch() {
+      return this.board.days[this.day].lunch;
+    },
+    dinner() {
+      return this.board.days[this.day].dinner;
+    }
+  }
 };
 </script>
 
@@ -75,6 +95,18 @@ export default {
 
       &:hover {
         --button-color: #{$orange};
+      }
+    }
+  }
+
+  &__content {
+    padding: 10px;
+
+    &__item {
+      &:not(:last-child) {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px dotted $gold;
       }
     }
   }
