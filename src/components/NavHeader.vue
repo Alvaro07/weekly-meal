@@ -37,6 +37,7 @@ export default {
   position: sticky;
   top: 0;
   background-color: white;
+  z-index: 1;
 
   &__wrap {
     max-width: 1280px;

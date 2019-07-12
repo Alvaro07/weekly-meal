@@ -1,7 +1,7 @@
 <template>
   <div
     class="c-tag"
-    :class="[typeClass, extraClass, {'c-tag--is-active' : isActive}]"
+    :class="[typeClass, extraClass, {'c-tag--is-active' : isActive}, {'c-tag--small' : small}]"
     @click.prevent="() => onButtonClick(type)"
   >{{ type | capitalize }}</div>
 </template>
@@ -16,6 +16,10 @@ export default {
     },
     extraClass: {
       type: String,
+      required: false
+    },
+    small: {
+      type: Boolean,
       required: false
     }
   },
@@ -48,8 +52,10 @@ export default {
 
 <style lang="scss" >
 .c-tag {
+  --padding-tag: 10px 20px;
+
   display: inline-block;
-  padding: 10px 20px;
+  padding: var(--padding-tag);
 
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
@@ -57,6 +63,10 @@ export default {
   color: white;
   font-weight: 700;
   cursor: pointer;
+
+  &--small {
+    --padding-tag: 5px 10px;
+  }
 
   &--breakfast {
     --bg-color: #{rgba($lightGreen, 0.6)};
