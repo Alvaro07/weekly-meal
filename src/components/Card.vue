@@ -8,15 +8,15 @@
     </header>
     <main class="c-card__content">
       <div class="c-card__content__item" v-if="breakfast">
-        <Tag small type="breakfast" extraClass="margin-bottom-5"/>
+        <Tag small active type="breakfast" extraClass="margin-bottom-5"/>
         <p>{{breakfast}}</p>
       </div>
       <div class="c-card__content__item" v-if="lunch">
-        <Tag small type="lunch" extraClass="margin-bottom-5"/>
+        <Tag small active type="lunch" extraClass="margin-bottom-5"/>
         <p>{{lunch}}</p>
       </div>
       <div class="c-card__content__item" v-if="dinner">
-        <Tag small type="dinner" extraClass="margin-bottom-5"/>
+        <Tag small active type="dinner" extraClass="margin-bottom-5"/>
         <p>{{dinner}}</p>
       </div>
     </main>
@@ -67,6 +67,7 @@ export default {
   border-radius: 5px;
   position: relative;
   min-height: var(--minimun-height);
+  height: 100%;
 
   @include mediaTablet() {
     --minimun-height: 150px;

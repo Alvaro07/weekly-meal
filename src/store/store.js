@@ -5,6 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    user: {
+      name: null,
+      email: null,
+      id: null
+    },
     board: {
       days: {
         monday: {
@@ -53,6 +58,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    addUser: (state, data) => {
+      state.user = { name: data.name, email: data.email, id: data.id };
+    },
     addDayMeal: (state, data) => {
       state.board.days[data.day][data.type] = data.meal;
     }
