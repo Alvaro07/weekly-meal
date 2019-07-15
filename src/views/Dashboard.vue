@@ -36,6 +36,8 @@
           disabled
           @onClick="() => addMeal()"
         />
+
+        <p v-if="modal.loading">Loading ...</p>
       </form>
     </Modal>
   </div>
@@ -46,7 +48,7 @@ import { mapState } from "vuex";
 import { eventBus } from "../event-bus.js";
 import firebase from "firebase";
 import { database } from "../main";
-// import { getUser } from "firebase/functions";
+import { getUser, getBoard, updateBoard } from "../firebase/functions";
 
 import NavHeader from "../components/NavHeader";
 import Card from "../components/Card";
@@ -67,11 +69,12 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loading: true,
       modal: {
         name: null,
         isOpen: false,
-        thisDay: null
+        thisDay: null,
+        loading: false
       },
       addForm: {
         activeTag: null,
@@ -85,7 +88,7 @@ export default {
     */
 
     openModal(modal, day) {
-      this.modal = { name: modal, isOpen: true, thisDay: day };
+      this.modal = { ...this.modal, name: modal, isOpen: true, thisDay: day };
     },
     closeModal() {
       this.disableTags();
@@ -123,37 +126,28 @@ export default {
       }
     },
     addMeal() {
-      let data = {
-        day: this.modal.thisDay,
-        type: this.addForm.activeTag,
-        meal: this.addForm.meal
-      };
-      this.$store.commit("addDayMeal", data);
-      this.closeModal();
+      this.modal.loading = true;
+      this.$store.commit("addDayMeal", { day: this.modal.thisDay, type: this.addForm.activeTag, meal: this.addForm.meal });
+      
+      updateBoard(this.board, this.user.id).then(() => {
+        this.closeModal();
+        this.modal.loading = false;
+      });
     }
   },
-  computed: mapState(["board"]),
+  computed: mapState(["board", "user"]),
   created() {
-    this.loading = true;
     var user = firebase.auth().currentUser;
-    return new Promise((resolve, reject) => {
-      var docRef = database
-        .collection("users")
-        .where("email", "==", user.email)
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(function(doc) {
-            let data = {
-              name: doc.data().user,
-              email: doc.data().email,
-              id: doc.id
-            };
-            resolve(data);
-          });
-        })
-    }).then(data => {
+
+    getUser(user.email).then(data => {
       this.$store.commit("addUser", data);
-      this.loading = false;
+      
+      getBoard(data.id).then(data => {
+        this.$store.commit("addAllBoard", data);
+        this.loading = false;
+      });
+
+      
     });
   }
 };
