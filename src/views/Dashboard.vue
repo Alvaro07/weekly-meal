@@ -2,11 +2,13 @@
   <div>
     <NavHeader></NavHeader>
     <main class="dashboard">
-      <ul class="dashboard__list">
+      <ul class="dashboard__list" v-if="!loading">
         <li v-for="(item, index) in board.days" :key="index">
           <Card :day="item.title" @addMeal="() => openModal('modal-add', item.title)"></Card>
-        </li > 
-      </ul> 
+        </li>
+      </ul>
+
+      <p v-if="loading">Loading ...</p>
     </main>
 
     <Modal v-show="modal.isOpen && modal.name === 'modal-add'" @close="closeModal" title="Add Meal">
@@ -34,7 +36,6 @@
           disabled
           @onClick="() => addMeal()"
         />
-
       </form>
     </Modal>
   </div>
@@ -43,6 +44,10 @@
 <script>
 import { mapState } from "vuex";
 import { eventBus } from "../event-bus.js";
+import firebase from "firebase";
+import { database } from "../main";
+// import { getUser } from "firebase/functions";
+
 import NavHeader from "../components/NavHeader";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
@@ -62,6 +67,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       modal: {
         name: null,
         isOpen: false,
@@ -126,7 +132,30 @@ export default {
       this.closeModal();
     }
   },
-  computed: mapState(["board"])
+  computed: mapState(["board"]),
+  created() {
+    this.loading = true;
+    var user = firebase.auth().currentUser;
+    return new Promise((resolve, reject) => {
+      var docRef = database
+        .collection("users")
+        .where("email", "==", user.email)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(function(doc) {
+            let data = {
+              name: doc.data().user,
+              email: doc.data().email,
+              id: doc.id
+            };
+            resolve(data);
+          });
+        })
+    }).then(data => {
+      this.$store.commit("addUser", data);
+      this.loading = false;
+    });
+  }
 };
 </script>
 

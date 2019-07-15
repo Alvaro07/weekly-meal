@@ -21,6 +21,10 @@ export default {
     small: {
       type: Boolean,
       required: false
+    },
+    active: {
+      type: Boolean,
+      required: false
     }
   },
   data() {
@@ -46,6 +50,9 @@ export default {
     selectTag(option) {
       this.isActive = option;
     }
+  },
+  mounted() {
+    if (this.active) this.isActive = true;
   }
 };
 </script>
@@ -65,7 +72,11 @@ export default {
   cursor: pointer;
 
   &--small {
-    --padding-tag: 5px 10px;
+    --padding-tag: 8px 20px;
+  }
+
+  &--is-active {
+    cursor: default;
   }
 
   &--breakfast {
