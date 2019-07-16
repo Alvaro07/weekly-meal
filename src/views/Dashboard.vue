@@ -4,7 +4,13 @@
     <main class="dashboard">
       <ul class="dashboard__list" v-if="!loading">
         <li v-for="(item, index) in board" :key="index">
-          <Card :day="item.day" :data="item" @addMeal="() => openModal('modal-add', item.day)"></Card>
+          <Card
+            :day="item.day"
+            :data="item"
+            @addMeal="() => openModal('modal-add', item.day)"
+            @removeMeal="typeMeal => removeMeal(typeMeal, item.day)"
+            :ref="'card'-item.day"
+          ></Card>
         </li>
       </ul>
 
@@ -131,11 +137,19 @@ export default {
 
       updateBoard(this.board, this.user.id).then(() => {
         this.closeModal();
-        this.modal.loading = false;
+        this.addForm.meal = null;
+      });
+    },
+    removeMeal(typeMeal, day) {
+      this.$store.commit("removeDayMeal", { type: typeMeal, day });
+
+      updateBoard(this.board, this.user.id).then(() => {
+        this.$forceUpdate();
       });
     }
   },
   computed: mapState(["board", "user"]),
+
   created() {
     var user = firebase.auth().currentUser;
 

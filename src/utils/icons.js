@@ -1,7 +1,16 @@
 /*/ Font awesome Icons /*/
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faSignOutAlt, faUtensils, faDrumstickBite, faHamburger, faUserCircle, faBars, faTimesCircle, faPlusCircle, faPlusSquare
+  faSignOutAlt,
+  faUtensils,
+  faDrumstickBite,
+  faHamburger,
+  faUserCircle,
+  faBars,
+  faTimesCircle,
+  faPlusCircle,
+  faPlusSquare,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -13,7 +22,8 @@ library.add(
   faBars,
   faTimesCircle,
   faPlusCircle,
-  faPlusSquare
+  faPlusSquare,
+  faTimes
 );
 
 export default library;
