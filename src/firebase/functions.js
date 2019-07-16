@@ -63,11 +63,13 @@ export const getBoard = userId => {
  */
 
 export const updateBoard = (board, userId) => {
+  let updateBoard = { board };
+
   return new Promise((resolve, reject) => {
     database
       .collection("users")
       .doc(userId)
-      .set(board, { merge: true })
+      .set(updateBoard, { merge: true })
       .then(() => resolve())
       .catch(error => {
         reject(error);
