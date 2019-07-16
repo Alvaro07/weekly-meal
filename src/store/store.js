@@ -10,59 +10,57 @@ export default new Vuex.Store({
       email: null,
       id: null
     },
-    board: {
-      days: {
-        monday: {
-          title: "monday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 0
-        },
-        tuesday: {
-          title: "tuesday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 1
-        },
-        wednesday: {
-          title: "wednesday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 2
-        },
-        thursday: {
-          title: "thursday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 3
-        },
-        friday: {
-          title: "friday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 4
-        },
-        saturday: {
-          title: "saturday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 5
-        },
-        sunday: {
-          title: "sunday",
-          breakfast: null,
-          lunch: null,
-          dinner: null,
-          order: 6
-        }
+    board: [
+      {
+        day: "monday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 0
+      },
+      {
+        day: "tuesday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 1
+      },
+      {
+        day: "wednesday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 2
+      },
+      {
+        day: "thursday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 3
+      },
+      {
+        day: "friday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 4
+      },
+      {
+        day: "saturday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 5
+      },
+      {
+        day: "sunday",
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+        order: 6
       }
-    }
+    ]
   },
   mutations: {
     addUser: (state, data) => {
@@ -72,7 +70,17 @@ export default new Vuex.Store({
       state.board = board;
     },
     addDayMeal: (state, data) => {
-      state.board.days[data.day][data.type] = data.meal;
+      state = state.board.map((e, index) => {
+        if (e.day === data.day) {
+          state.board[index] = {
+            ...state.board[index],
+            [data.type]: data.meal
+          };
+          console.log("data", data.type);
+          console.log("data", data.meal);
+          console.log("state.board[index]", state.board[index]);
+        }
+      });
     }
   },
   actions: {}

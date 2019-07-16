@@ -3,8 +3,8 @@
     <NavHeader></NavHeader>
     <main class="dashboard">
       <ul class="dashboard__list" v-if="!loading">
-        <li v-for="(item, index) in board.days" :key="index">
-          <Card :day="item.title" @addMeal="() => openModal('modal-add', item.title)"></Card>
+        <li v-for="(item, index) in board" :key="index">
+          <Card :day="item.day" :data="item" @addMeal="() => openModal('modal-add', item.day)"></Card>
         </li>
       </ul>
 
@@ -128,7 +128,7 @@ export default {
     addMeal() {
       this.modal.loading = true;
       this.$store.commit("addDayMeal", { day: this.modal.thisDay, type: this.addForm.activeTag, meal: this.addForm.meal });
-      
+
       updateBoard(this.board, this.user.id).then(() => {
         this.closeModal();
         this.modal.loading = false;
@@ -141,13 +141,11 @@ export default {
 
     getUser(user.email).then(data => {
       this.$store.commit("addUser", data);
-      
+
       getBoard(data.id).then(data => {
-        this.$store.commit("addAllBoard", data);
+        this.$store.commit("addAllBoard", data.board);
         this.loading = false;
       });
-
-      
     });
   }
 };

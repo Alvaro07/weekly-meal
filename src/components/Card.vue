@@ -7,17 +7,17 @@
       </span>
     </header>
     <main class="c-card__content">
-      <div class="c-card__content__item" v-if="breakfast">
+      <div class="c-card__content__item" v-if="data.breakfast">
         <Tag small active type="breakfast" extraClass="margin-bottom-5"/>
-        <p>{{breakfast}}</p>
+        <p>{{data.breakfast}}</p>
       </div>
-      <div class="c-card__content__item" v-if="lunch">
+      <div class="c-card__content__item" v-if="data.lunch">
         <Tag small active type="lunch" extraClass="margin-bottom-5"/>
-        <p>{{lunch}}</p>
+        <p>{{data.lunch}}</p>
       </div>
-      <div class="c-card__content__item" v-if="dinner">
+      <div class="c-card__content__item" v-if="data.dinner">
         <Tag small active type="dinner" extraClass="margin-bottom-5"/>
-        <p>{{dinner}}</p>
+        <p>{{data.dinner}}</p>
       </div>
     </main>
   </div>
@@ -36,6 +36,10 @@ export default {
     day: {
       validator: value => ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].indexOf(value) !== -1,
       required: true
+    },
+    data: {
+      type: Object,
+      required: true
     }
   },
   methods: {
@@ -44,16 +48,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(["board"]),
-    breakfast() {
-      return this.board.days[this.day].breakfast;
-    },
-    lunch() {
-      return this.board.days[this.day].lunch;
-    },
-    dinner() {
-      return this.board.days[this.day].dinner;
-    }
+    ...mapState(["board"])
+  },
+  created(){
+    console.log('data', this.data)
+    console.log('day', this.day)
   }
 };
 </script>
