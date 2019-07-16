@@ -2,21 +2,37 @@
   <div class="c-card">
     <header class="c-card__header">
       <h3 class="c-card__header__day">{{ day | capitalize }}</h3>
+
       <span class="c-card__header__add-button" @click.prevent="addMeal">
         <font-awesome-icon icon="plus-square"/>
       </span>
     </header>
     <main class="c-card__content">
       <div class="c-card__content__item" v-if="data.breakfast">
-        <Tag small active type="breakfast" extraClass="margin-bottom-5"/>
+        <Tag small active type="breakfast" extraClass="margin-bottom-5 margin-right-10"/>
+        <font-awesome-icon
+          icon="times"
+          class="c-card__content__item__remove"
+          @click.prevent="() => removeMeal('breakfast')"
+        />
         <p>{{data.breakfast}}</p>
       </div>
       <div class="c-card__content__item" v-if="data.lunch">
-        <Tag small active type="lunch" extraClass="margin-bottom-5"/>
+        <Tag small active type="lunch" extraClass="margin-bottom-5 margin-right-10"/>
+        <font-awesome-icon
+          icon="times"
+          class="c-card__content__item__remove"
+          @click.prevent="() => removeMeal('lunch')"
+        />
         <p>{{data.lunch}}</p>
       </div>
       <div class="c-card__content__item" v-if="data.dinner">
-        <Tag small active type="dinner" extraClass="margin-bottom-5"/>
+        <Tag small active type="dinner" extraClass="margin-bottom-5 margin-right-10"/>
+        <font-awesome-icon
+          icon="times"
+          class="c-card__content__item__remove"
+          @click.prevent="() => removeMeal('dinner')"
+        />
         <p>{{data.dinner}}</p>
       </div>
     </main>
@@ -45,14 +61,16 @@ export default {
   methods: {
     addMeal() {
       this.$emit("addMeal");
+    },
+    removeMeal(typeMeal) {
+      this.$emit("removeMeal", typeMeal);
+    },
+    forceUpdateCard() {
+      this.$forceUpdate();
     }
   },
   computed: {
     ...mapState(["board"])
-  },
-  created(){
-    console.log('data', this.data)
-    console.log('day', this.day)
   }
 };
 </script>
@@ -107,6 +125,19 @@ export default {
         padding-bottom: 10px;
         margin-bottom: 10px;
         border-bottom: 1px dotted $gold;
+      }
+
+      &__remove {
+        --color: #{$orange};
+
+        color: var(--color);
+        transition: 0.3s all ease;
+        cursor: pointer;
+        font-size: 1.8rem;
+
+        &:hover {
+          --color: #{$lightOrange};
+        }
       }
     }
   }

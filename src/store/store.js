@@ -76,9 +76,16 @@ export default new Vuex.Store({
             ...state.board[index],
             [data.type]: data.meal
           };
-          console.log("data", data.type);
-          console.log("data", data.meal);
-          console.log("state.board[index]", state.board[index]);
+        }
+      });
+    },
+    removeDayMeal: (state, data) => {
+      state = state.board.map((e, index) => {
+        if (e.day === data.day) {
+          state.board[index] = {
+            ...state.board[index],
+            [data.type]: null
+          };
         }
       });
     }
