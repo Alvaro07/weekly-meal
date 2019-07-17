@@ -86,12 +86,11 @@ export default {
 .c-card {
   --minimun-height: 100px;
 
-  background: rgba($gold, 0.1);
-  border: 1px solid rgba($gold, 0.4);
-  border-radius: 2px;
+  background: rgba($gold, 0.2);
   position: relative;
   min-height: var(--minimun-height);
   height: 100%;
+  border-bottom: 1px solid $gold;
 
   @include mediaTablet() {
     --minimun-height: 150px;
@@ -102,12 +101,12 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: rgba($gold, 0.4);
+    background-color: white;
 
     &__day {
       text-align: center;
-      font-family: $paytone;
-      font-size: 1.8rem;
+      font-size: 2.2rem;
+      font-weight: 500;
       color: $darkGreen;
     }
 
@@ -149,7 +148,7 @@ export default {
       color: white;
       transition: 0.3s all ease;
       cursor: pointer;
-      font-size: 2rem;
+      font-size: 1.6rem;
       padding: 0 10px;
 
       &:hover {
@@ -158,24 +157,21 @@ export default {
     }
 
     &__title {
-      padding: 10px 30px;
+      padding: 10px;
       display: inline-block;
 
-      font-size: 2rem;
-      font-weight: 700;
-      font-family: $gloria;
-      text-shadow: 1px 1px rgba(white, 0.5);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: white;
       text-align: center;
-
-      background-color: $beige;
-      color: var(--color);
+      background-color: var(--color); 
       cursor: pointer;
       transition: 0.3s all ease;
 
       &--breakfast {
-        --color: #{$green};
+        --color: #{$lightGreen};
         &:hover {
-          --color: #{$lightGreen};
+          --color: #{$green};
         }
       }
 
@@ -187,9 +183,9 @@ export default {
       }
 
       &--dinner {
-        --color: #{$orange};
+        --color: #{$grey};
         &:hover {
-          --color: #{$lightOrange};
+          --color: #{$darkGrey};
         }
       }
     }

@@ -184,11 +184,11 @@ export default {
 
   max-width: 1280px;
   margin: 0px auto;
-  padding: 15px;
+  padding: 30px 20px;
 
   &__list {
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 20px;
     grid-template-columns: repeat(var(--columns), 1fr);
 
     @include mediaTablet() {
