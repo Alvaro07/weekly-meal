@@ -75,12 +75,8 @@ export default {
     --padding-tag: 8px 20px;
   }
 
-  &--is-active {
-    cursor: default;
-  }
-
   &--breakfast {
-    --bg-color: #{rgba($lightGreen, 0.6)};
+    --bg-color: #{rgba($lightGreen, 0.8)};
     &:hover,
     &.c-tag--is-active {
       --bg-color: #{$lightGreen};
@@ -88,7 +84,7 @@ export default {
   }
 
   &--lunch {
-    --bg-color: #{rgba($blue, 0.6)};
+    --bg-color: #{rgba($blue, 0.8)};
     &:hover,
     &.c-tag--is-active {
       --bg-color: #{$blue};
@@ -96,7 +92,7 @@ export default {
   }
 
   &--dinner {
-    --bg-color: #{rgba($lightOrange, 0.6)};
+    --bg-color: #{rgba($lightOrange, 0.8)};
     &:hover,
     &.c-tag--is-active {
       --bg-color: #{$lightOrange};

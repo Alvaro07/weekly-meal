@@ -25,3 +25,79 @@ $positions: ("", "-top", "-right", "-bottom", "-left");
     }
   }
 }
+
+/**
+ * Colors
+*/
+
+.color-blue {
+  color: $blue;
+}
+.color-beige {
+  color: $beige;
+}
+.color-gold {
+  color: $gold;
+}
+.color-green {
+  color: $green;
+}
+.color-dark-green {
+  color: $darkGreen;
+}
+.color-light-green {
+  color: $lightGreen;
+}
+.color-orange {
+  color: $orange;
+}
+.color-light-orange {
+  color: $lightOrange;
+}
+.color-grey {
+  color: $grey;
+}
+.color-dark-grey {
+  color: $darkGrey;
+}
+.color-light-grey {
+  color: $lightGrey;
+}
+
+/**
+ * Background colors
+*/
+
+.bg-color-blue {
+  background-color: $blue;
+}
+.bg-color-beige {
+  background-color: $beige;
+}
+.bg-color-gold {
+  background-color: $gold;
+}
+.bg-color-green {
+  background-color: $green;
+}
+.bg-color-dark-green {
+  background-color: $darkGreen;
+}
+.bg-color-light-green {
+  background-color: $lightGreen;
+}
+.bg-color-orange {
+  background-color: $orange;
+}
+.bg-color-light-orange {
+  background-color: $lightOrange;
+}
+.bg-color-grey {
+  background-color: $grey;
+}
+.bg-color-dark-grey {
+  background-color: $darkGrey;
+}
+.bg-color-light-grey {
+  background-color: $lightGrey;
+}

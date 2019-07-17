@@ -10,7 +10,8 @@ import {
   faTimesCircle,
   faPlusCircle,
   faPlusSquare,
-  faTimes
+  faTimes,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -23,7 +24,8 @@ library.add(
   faTimesCircle,
   faPlusCircle,
   faPlusSquare,
-  faTimes
+  faTimes,
+  faPlus
 );
 
 export default library;

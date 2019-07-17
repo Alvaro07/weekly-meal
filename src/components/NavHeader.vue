@@ -1,7 +1,7 @@
 <template>
   <header class="m-header">
     <div class="m-header__wrap">
-      <font-awesome-icon icon="bars" class="m-header__burguer"/>
+      <!-- <font-awesome-icon icon="bars" class="m-header__burguer"/> -->
       <Logo small></Logo>
       <font-awesome-icon icon="sign-out-alt" @click.prevent="logout" class="m-header__logout"/>
     </div>
