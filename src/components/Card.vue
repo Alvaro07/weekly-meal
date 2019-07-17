@@ -10,11 +10,9 @@
     <main class="c-card__content">
       <div class="c-card__content__item" v-if="data.breakfast">
         <h3 class="c-card__header-type">
-          <font-awesome-icon
-            icon="times"
-            class="c-card__header-type__remove"
-            @click.prevent="() => removeMeal('breakfast')"
-          />
+          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('breakfast')">
+            <font-awesome-icon icon="times"/>
+          </span>
           <span
             class="c-card__header-type__title c-card__header-type__title--breakfast"
             @click.prevent="() => openMeal(data.breakfast, 'breakfast')"
@@ -25,11 +23,9 @@
       </div>
       <div class="c-card__content__item" v-if="data.lunch">
         <h3 class="c-card__header-type">
-          <font-awesome-icon
-            icon="times"
-            class="c-card__header-type__remove"
-            @click.prevent="() => removeMeal('lunch')"
-          />
+          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('lunch')">
+            <font-awesome-icon icon="times"/>
+          </span>
           <span
             class="c-card__header-type__title c-card__header-type__title--lunch"
             @click.prevent="() => openMeal(data.lunch, 'lunch')"
@@ -39,11 +35,9 @@
       </div>
       <div class="c-card__content__item" v-if="data.dinner">
         <h3 class="c-card__header-type">
-          <font-awesome-icon
-            icon="times"
-            class="c-card__header-type__remove"
-            @click.prevent="() => removeMeal('dinner')"
-          />
+          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('dinner')">
+            <font-awesome-icon icon="times"/>
+          </span>
           <span
             class="c-card__header-type__title c-card__header-type__title--dinner"
             @click.prevent="() => openMeal(data.dinner, 'dinner')"
@@ -132,9 +126,8 @@ export default {
   }
 
   &__content {
-    // padding: 10px;
-
     &__item {
+      position: relative;
       &:not(:last-child) {
         border-bottom: 1px solid rgba($gold, 0.2);
       }
@@ -144,39 +137,40 @@ export default {
   /*/ Cabecera de cada comida /*/
 
   &__header-type {
-    display: inline-flex;
-    width: 100%;
-
-    align-items: center;
     transition: 0.3s all ease;
-    background-color: $beige;
-    border-bottom: 1px solid rgba($gold, 0.2);
-    padding: 0 10px;
+    display: flex;
 
     &__remove {
-      --color: #{$darkGreen};
+      --bg-color: #{$orange};
 
-      color: var(--color);
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-color);
+      color: white;
       transition: 0.3s all ease;
       cursor: pointer;
-      font-size: 1.6rem;
+      font-size: 2rem;
+      padding: 0 10px;
 
       &:hover {
-        --color: #{$lightOrange};
+        --bg-color: #{$lightOrange};
       }
     }
 
     &__title {
-      padding: 10px 15px;
-      flex: 1;
+      padding: 10px 30px;
+      display: inline-block;
 
       font-size: 2rem;
       font-weight: 700;
       font-family: $gloria;
       text-shadow: 1px 1px rgba(white, 0.5);
       text-align: center;
+
+      background-color: $beige;
       color: var(--color);
       cursor: pointer;
+      transition: 0.3s all ease;
 
       &--breakfast {
         --color: #{$green};
@@ -188,7 +182,7 @@ export default {
       &--lunch {
         --color: #{$blue};
         &:hover {
-          --color: #{$darkGreen};
+          --color: #{rgba($blue, 0.8)};
         }
       }
 
@@ -206,8 +200,7 @@ export default {
     font-weight: 700;
     font-family: $gloria;
     line-height: 1.2;
-
-    padding: 20px;
+    padding: 15px 30px 15px 20px;
   }
 }
 </style>
