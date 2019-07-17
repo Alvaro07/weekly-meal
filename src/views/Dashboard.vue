@@ -61,7 +61,7 @@ import Card from "../components/Card";
 import Modal from "../components/Modal";
 import Tag from "../components/Tag";
 import InputField from "../components/InputField";
-import textareaField from "../components/textareaField";
+import TextareaField from "../components/TextareaField";
 import Button from "../components/Button";
 
 export default {
@@ -73,7 +73,7 @@ export default {
     Tag,
     InputField,
     Button,
-    textareaField
+    TextareaField
   },
   data() {
     return {
@@ -192,11 +192,11 @@ export default {
     grid-template-columns: repeat(var(--columns), 1fr);
 
     @include mediaTablet() {
-      --columns: 3;
+      --columns: 2;
     }
 
     @include mediaDesktop() {
-      --columns: 4;
+      --columns: 3;
     }
   }
 }

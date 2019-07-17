@@ -4,51 +4,52 @@
       <h3 class="c-card__header__day">{{ day | capitalize }}</h3>
 
       <span class="c-card__header__add-button" @click.prevent="addMeal">
-        <font-awesome-icon icon="plus-square"/>
+        <font-awesome-icon icon="plus"/>
       </span>
     </header>
     <main class="c-card__content">
       <div class="c-card__content__item" v-if="data.breakfast">
-        <Tag
-          small
-          type="breakfast"
-          extraClass="margin-bottom-5 margin-right-10"
-          @onClick="() => openMeal(data.breakfast, 'breakfast')"
-        />
-        <font-awesome-icon
-          icon="times"
-          class="c-card__content__item__remove"
-          @click.prevent="() => removeMeal('breakfast')"
-        />
-        <p>{{data.breakfast}}</p>
+        <h3 class="c-card__header-type">
+          <font-awesome-icon
+            icon="times"
+            class="c-card__header-type__remove"
+            @click.prevent="() => removeMeal('breakfast')"
+          />
+          <span
+            class="c-card__header-type__title c-card__header-type__title--breakfast"
+            @click.prevent="() => openMeal(data.breakfast, 'breakfast')"
+          >Breakfast</span>
+        </h3>
+
+        <p class="c-card__meal">{{data.breakfast}}</p>
       </div>
       <div class="c-card__content__item" v-if="data.lunch">
-        <Tag
-          small
-          type="lunch"
-          extraClass="margin-bottom-5 margin-right-10"
-          @onClick="() => openMeal(data.lunch, 'lunch')"
-        />
-        <font-awesome-icon
-          icon="times"
-          class="c-card__content__item__remove"
-          @click.prevent="() => removeMeal('lunch')"
-        />
-        <p>{{data.lunch}}</p>
+        <h3 class="c-card__header-type">
+          <font-awesome-icon
+            icon="times"
+            class="c-card__header-type__remove"
+            @click.prevent="() => removeMeal('lunch')"
+          />
+          <span
+            class="c-card__header-type__title c-card__header-type__title--lunch"
+            @click.prevent="() => openMeal(data.lunch, 'lunch')"
+          >Lunch</span>
+        </h3>
+        <p class="c-card__meal">{{data.lunch}}</p>
       </div>
       <div class="c-card__content__item" v-if="data.dinner">
-        <Tag
-          small
-          type="dinner"
-          extraClass="margin-bottom-5 margin-right-10"
-          @onClick="() => openMeal(data.dinner, 'dinner')"
-        />
-        <font-awesome-icon
-          icon="times"
-          class="c-card__content__item__remove"
-          @click.prevent="() => removeMeal('dinner')"
-        />
-        <p>{{data.dinner}}</p>
+        <h3 class="c-card__header-type">
+          <font-awesome-icon
+            icon="times"
+            class="c-card__header-type__remove"
+            @click.prevent="() => removeMeal('dinner')"
+          />
+          <span
+            class="c-card__header-type__title c-card__header-type__title--dinner"
+            @click.prevent="() => openMeal(data.dinner, 'dinner')"
+          >Dinner</span>
+        </h3>
+        <p class="c-card__meal">{{data.dinner}}</p>
       </div>
     </main>
   </div>
@@ -56,13 +57,10 @@
 
 <script>
 import { mapState } from "vuex";
-import Tag from "./Tag";
 
 export default {
   name: "Card",
-  components: {
-    Tag
-  },
+
   props: {
     day: {
       validator: value => ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].indexOf(value) !== -1,
@@ -96,7 +94,7 @@ export default {
 
   background: rgba($gold, 0.1);
   border: 1px solid rgba($gold, 0.4);
-  border-radius: 5px;
+  border-radius: 2px;
   position: relative;
   min-height: var(--minimun-height);
   height: 100%;
@@ -109,7 +107,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 5px 5px 10px;
+    padding: 10px;
+    background-color: rgba($gold, 0.4);
 
     &__day {
       text-align: center;
@@ -121,7 +120,7 @@ export default {
     &__add-button {
       --button-color: #{$darkGreen};
 
-      font-size: 3rem;
+      font-size: 2.1rem;
       color: var(--button-color);
       cursor: pointer;
       transition: 0.3s all ease;
@@ -133,28 +132,82 @@ export default {
   }
 
   &__content {
-    padding: 10px;
+    // padding: 10px;
 
     &__item {
       &:not(:last-child) {
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px dotted $gold;
+        border-bottom: 1px solid rgba($gold, 0.2);
+      }
+    }
+  }
+
+  /*/ Cabecera de cada comida /*/
+
+  &__header-type {
+    display: inline-flex;
+    width: 100%;
+
+    align-items: center;
+    transition: 0.3s all ease;
+    background-color: $beige;
+    border-bottom: 1px solid rgba($gold, 0.2);
+    padding: 0 10px;
+
+    &__remove {
+      --color: #{$darkGreen};
+
+      color: var(--color);
+      transition: 0.3s all ease;
+      cursor: pointer;
+      font-size: 1.6rem;
+
+      &:hover {
+        --color: #{$lightOrange};
+      }
+    }
+
+    &__title {
+      padding: 10px 15px;
+      flex: 1;
+
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: $gloria;
+      text-shadow: 1px 1px rgba(white, 0.5);
+      text-align: center;
+      color: var(--color);
+      cursor: pointer;
+
+      &--breakfast {
+        --color: #{$green};
+        &:hover {
+          --color: #{$lightGreen};
+        }
       }
 
-      &__remove {
+      &--lunch {
+        --color: #{$blue};
+        &:hover {
+          --color: #{$darkGreen};
+        }
+      }
+
+      &--dinner {
         --color: #{$orange};
-
-        color: var(--color);
-        transition: 0.3s all ease;
-        cursor: pointer;
-        font-size: 1.8rem;
-
         &:hover {
           --color: #{$lightOrange};
         }
       }
     }
+  }
+
+  &__meal {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: $gloria;
+    line-height: 1.2;
+
+    padding: 20px;
   }
 }
 </style>
