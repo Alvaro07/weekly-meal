@@ -32,6 +32,7 @@
 
 <script>
 import firebase from "firebase";
+import { mapState } from "vuex";
 import Logo from "../components/Logo";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
@@ -52,6 +53,7 @@ export default {
       error: null
     };
   },
+  computed: mapState(['board']),
   methods: {
     createAccount() {
       this.error = null;
@@ -80,7 +82,8 @@ export default {
                   .collection("users")
                   .add({
                     user: this.user,
-                    email: this.email
+                    email: this.email,
+                    board: this.board
                   })
                   .then(() => {
                     // Access to dashboard

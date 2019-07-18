@@ -96,12 +96,11 @@ export default {
     --logo-letter-space: -1px;
 
     .c-logo__text {
-      display: none;
+      margin-left: 10px;
+      margin-top: -7px;
 
       @include mediaTablet() {
         display: inline-block;
-        margin-left: 10px;
-        margin-top: -7px;
       }
     }
   }

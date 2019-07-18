@@ -1,29 +1,16 @@
-# weekly-meal
+# Spoty-mix Vue
 
-## Project setup
-```
-npm install
-```
+Your weekly menu with just one click, developed with Vue + Firebase!
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+--
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Link: [alvaro07.github.io/weekly-meal/](https://alvaro07.github.io/weekly-meal/)
 
-### Run your tests
-```
-npm run test
-```
+---
 
-### Lints and fixes files
-```
-npm run lint
-```
+![alt text](login.png "login")
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---
+
+![alt text](dashboard.png "dashboard")
+
