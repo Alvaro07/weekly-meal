@@ -1,5 +1,5 @@
 module.exports = {
-  // publicPath: "weekly-meal",
+  publicPath: "weekly-meal",
   css: {
     loaderOptions: {
       sass: {
