@@ -8,9 +8,9 @@ Link: [alvaro07.github.io/weekly-meal/](https://alvaro07.github.io/weekly-meal/)
 
 ---
 
-![alt text](login.png "login")
+![alt text](login-image.png "login")
 
 ---
 
-![alt text](dashboard.png "dashboard")
+![alt text](dashboard-image.png "dashboard")
 
