@@ -1,7 +1,6 @@
 <template>
   <header class="m-header">
     <div class="m-header__wrap">
-      <!-- <font-awesome-icon icon="bars" class="m-header__burguer"/> -->
       <Logo small></Logo>
       <font-awesome-icon icon="sign-out-alt" @click.prevent="logout" class="m-header__logout"/>
     </div>
@@ -39,6 +38,10 @@ export default {
   background-color: white;
   z-index: 1;
 
+  /**
+  * Header wrap container
+  */
+
   &__wrap {
     max-width: 1280px;
     padding: 10px 15px;
@@ -49,16 +52,10 @@ export default {
     align-items: center;
   }
 
-  &__burguer {
-    font-size: 2.4rem;
-    transition: 0.2s all ease;
-    cursor: pointer;
-
-    &:hover {
-      color: $orange;
-    }
-  }
-
+  /**
+  * Logout icon
+  */
+  
   &__logout {
     display: flex;
     justify-content: center;

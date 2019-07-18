@@ -46,6 +46,10 @@ export default {
     --logo-font-size: 5.5rem;
   }
 
+  /**
+  * Icon logo styles
+  */
+
   &__icon {
     display: flex;
     align-items: center;
@@ -61,6 +65,10 @@ export default {
     background-color: $orange;
     box-shadow: 2px 2px $darkGreen;
   }
+
+  /**
+  * Logo text
+  */
 
   &__text {
     letter-spacing: var(--logo-letter-space);

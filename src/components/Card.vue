@@ -96,12 +96,16 @@ export default {
     --minimun-height: 150px;
   }
 
+  /**
+  * header day card
+  */
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: #fffdfa;
+    background: $silver;
 
     &__day {
       text-align: center;
@@ -117,13 +121,16 @@ export default {
       color: var(--button-color);
       cursor: pointer;
       transition: 0.3s all ease;
-      
 
       &:hover {
         --button-color: #{$orange};
       }
     }
   }
+
+  /**
+  * General content
+  */
 
   &__content {
     &__item {
@@ -134,14 +141,17 @@ export default {
     }
   }
 
-  /*/ Cabecera de cada comida /*/
+  /**
+  * Items content
+  * Header type of meal
+  */
 
   &__header-type {
     transition: 0.3s all ease;
     display: flex;
 
     &__remove {
-      --bg-color: #{$orange};
+      --bg-color: #{rgba($silver, 0.6)};
 
       display: flex;
       align-items: center;
@@ -150,10 +160,14 @@ export default {
       cursor: pointer;
       font-size: 1.6rem;
       margin-left: auto;
-      padding: 15px 15px 5px 5px;
+      padding: 5px 7px;
+      margin-top: 10px;
+      margin-right: 10px;
+      background-color: var(--bg-color);
+      border-radius: 50%;
 
       &:hover {
-        --bg-color: #{$lightOrange};
+        --bg-color: #{rgba($silver, 1)};
       }
     }
 
@@ -168,6 +182,10 @@ export default {
       background-color: var(--color);
       cursor: pointer;
       transition: 0.3s all ease;
+
+      /**
+      * Meal type variants
+      */
 
       &--breakfast {
         --color: #{$lightGreen};
@@ -191,6 +209,10 @@ export default {
       }
     }
   }
+
+  /**
+  * Meal description
+  */
 
   &__meal {
     font-size: 1.8rem;

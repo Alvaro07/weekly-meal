@@ -42,7 +42,7 @@ export default {
     activate() {
       this.isDisabled = false;
     },
-    addContent(contentText){
+    addContent(contentText) {
       this.content = contentText;
     }
   },
@@ -58,11 +58,19 @@ export default {
 .c-textarea {
   position: relative;
 
+  /**
+  * Disabled state
+  */
+
   &--disabled {
     opacity: 0.5;
     pointer-events: none;
     user-select: none;
   }
+
+  /**
+  * Textarea element
+  */
 
   &__field {
     width: 100%;
@@ -83,6 +91,11 @@ export default {
       }
     }
   }
+
+  /**
+  * Label element
+  */
+
   &__label {
     padding-bottom: 10px;
     display: block;
