@@ -10,38 +10,38 @@
     <main class="c-card__content">
       <div class="c-card__content__item" v-if="data.breakfast">
         <h3 class="c-card__header-type">
-          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('breakfast')">
-            <font-awesome-icon icon="times"/>
-          </span>
           <span
             class="c-card__header-type__title c-card__header-type__title--breakfast"
             @click.prevent="() => openMeal(data.breakfast, 'breakfast')"
           >Breakfast</span>
+          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('breakfast')">
+            <font-awesome-icon icon="times"/>
+          </span>
         </h3>
 
         <p class="c-card__meal">{{data.breakfast}}</p>
       </div>
       <div class="c-card__content__item" v-if="data.lunch">
         <h3 class="c-card__header-type">
-          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('lunch')">
-            <font-awesome-icon icon="times"/>
-          </span>
           <span
             class="c-card__header-type__title c-card__header-type__title--lunch"
             @click.prevent="() => openMeal(data.lunch, 'lunch')"
           >Lunch</span>
+          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('lunch')">
+            <font-awesome-icon icon="times"/>
+          </span>
         </h3>
         <p class="c-card__meal">{{data.lunch}}</p>
       </div>
       <div class="c-card__content__item" v-if="data.dinner">
         <h3 class="c-card__header-type">
-          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('dinner')">
-            <font-awesome-icon icon="times"/>
-          </span>
           <span
             class="c-card__header-type__title c-card__header-type__title--dinner"
             @click.prevent="() => openMeal(data.dinner, 'dinner')"
           >Dinner</span>
+          <span class="c-card__header-type__remove" @click.prevent="() => removeMeal('dinner')">
+            <font-awesome-icon icon="times"/>
+          </span>
         </h3>
         <p class="c-card__meal">{{data.dinner}}</p>
       </div>
@@ -101,7 +101,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: white;
+    background: #fffdfa;
 
     &__day {
       text-align: center;
@@ -117,6 +117,7 @@ export default {
       color: var(--button-color);
       cursor: pointer;
       transition: 0.3s all ease;
+      
 
       &:hover {
         --button-color: #{$orange};
@@ -144,12 +145,12 @@ export default {
 
       display: flex;
       align-items: center;
-      background-color: var(--bg-color);
-      color: white;
+      color: $darkGreen;
       transition: 0.3s all ease;
       cursor: pointer;
       font-size: 1.6rem;
-      padding: 0 10px;
+      margin-left: auto;
+      padding: 15px 15px 5px 5px;
 
       &:hover {
         --bg-color: #{$lightOrange};
@@ -164,7 +165,7 @@ export default {
       font-weight: 500;
       color: white;
       text-align: center;
-      background-color: var(--color); 
+      background-color: var(--color);
       cursor: pointer;
       transition: 0.3s all ease;
 
@@ -183,9 +184,9 @@ export default {
       }
 
       &--dinner {
-        --color: #{$grey};
+        --color: #{$orange};
         &:hover {
-          --color: #{$darkGrey};
+          --color: #{$lightOrange};
         }
       }
     }
