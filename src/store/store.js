@@ -15,50 +15,43 @@ export default new Vuex.Store({
         day: "monday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 0
+        dinner: null
       },
       {
         day: "tuesday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 1
+        dinner: null
       },
       {
         day: "wednesday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 2
+        dinner: null
       },
       {
         day: "thursday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 3
+        dinner: null
       },
       {
         day: "friday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 4
+        dinner: null
       },
       {
         day: "saturday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 5
+        dinner: null
       },
       {
         day: "sunday",
         breakfast: null,
         lunch: null,
-        dinner: null,
-        order: 6
+        dinner: null
       }
     ]
   },
