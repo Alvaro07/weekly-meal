@@ -179,12 +179,17 @@ export default {
 </script>
 
 <style lang="scss">
+
 .dashboard {
   --columns: 1;
 
   max-width: 1280px;
   margin: 0px auto;
   padding: 30px 20px;
+
+  /**
+  * Days list container
+  */
 
   &__list {
     display: grid;

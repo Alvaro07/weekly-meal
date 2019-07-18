@@ -7,11 +7,19 @@
 <style lang="scss">
 @import "styles/index";
 
+/**
+  * base app styles
+  */
+
 .app {
   display: block;
   height: 100%;
   min-height: 100%;
 }
+
+/**
+  * Comun container
+  */
 
 .page-content {
   &__main {

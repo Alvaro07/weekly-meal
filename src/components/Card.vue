@@ -96,6 +96,10 @@ export default {
     --minimun-height: 150px;
   }
 
+  /**
+  * header day card
+  */
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -117,13 +121,16 @@ export default {
       color: var(--button-color);
       cursor: pointer;
       transition: 0.3s all ease;
-      
 
       &:hover {
         --button-color: #{$orange};
       }
     }
   }
+
+  /**
+  * General content
+  */
 
   &__content {
     &__item {
@@ -134,7 +141,10 @@ export default {
     }
   }
 
-  /*/ Cabecera de cada comida /*/
+  /**
+  * Items content
+  * Header type of meal
+  */
 
   &__header-type {
     transition: 0.3s all ease;
@@ -169,6 +179,10 @@ export default {
       cursor: pointer;
       transition: 0.3s all ease;
 
+      /**
+      * Meal type variants
+      */
+
       &--breakfast {
         --color: #{$lightGreen};
         &:hover {
@@ -191,6 +205,10 @@ export default {
       }
     }
   }
+
+  /**
+  * Meal description
+  */
 
   &__meal {
     font-size: 1.8rem;

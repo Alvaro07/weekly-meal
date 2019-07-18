@@ -59,11 +59,19 @@ export default {
 .c-input {
   position: relative;
 
+  /**
+  * Disabled state
+  */
+
   &--disabled {
     opacity: 0.5;
     pointer-events: none;
     user-select: none;
   }
+
+  /**
+  * Input element
+  */
 
   &__field {
     width: 100%;
@@ -87,6 +95,10 @@ export default {
       }
     }
   }
+
+  /**
+  * Focus animation
+  */
 
   &__animate-border {
     content: "";

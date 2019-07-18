@@ -71,9 +71,17 @@ export default {
   font-weight: 700;
   cursor: pointer;
 
+  /**
+  * Small variant
+  */
+
   &--small {
     --padding-tag: 8px 20px;
   }
+
+  /**
+  * Meal variants
+  */
 
   &--breakfast {
     --bg-color: #{rgba($lightGreen, 0.8)};
