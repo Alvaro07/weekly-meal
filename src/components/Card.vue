@@ -105,7 +105,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: #fffdfa;
+    background: $silver;
 
     &__day {
       text-align: center;
@@ -151,7 +151,7 @@ export default {
     display: flex;
 
     &__remove {
-      --bg-color: #{$orange};
+      --bg-color: #{rgba($silver, 0.6)};
 
       display: flex;
       align-items: center;
@@ -160,10 +160,14 @@ export default {
       cursor: pointer;
       font-size: 1.6rem;
       margin-left: auto;
-      padding: 15px 15px 5px 5px;
+      padding: 5px 7px;
+      margin-top: 10px;
+      margin-right: 10px;
+      background-color: var(--bg-color);
+      border-radius: 50%;
 
       &:hover {
-        --bg-color: #{$lightOrange};
+        --bg-color: #{rgba($silver, 1)};
       }
     }
 
