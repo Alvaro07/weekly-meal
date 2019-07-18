@@ -1,4 +1,4 @@
-# Spoty-mix Vue
+# Weekly menu
 
 Your weekly menu with just one click, developed with Vue + Firebase!
 
