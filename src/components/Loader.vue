@@ -1,14 +1,17 @@
 <template>
-  <div class="c-loader-wrap">
-    <div class="c-loader"></div>
-    <!-- <div class="c-loader__text">Loading ...</div> -->
-  </div>
+  <div class="c-loader" :class="{'c-loader--small': small}"></div>
 </template>
 
 
 <script>
 export default {
-  name: "loader"
+  name: "loader",
+  props: {
+    small: {
+      type: Boolean,
+      required: false
+    }
+  }
 };
 </script>
 
@@ -21,13 +24,18 @@ export default {
 .c-loader {
   display: block;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   border: 4px solid transparent;
   border-top: 4px solid $green;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
+
+  &--small {
+    width: 80px;
+    height: 80px;
+  }
 
   &::before,
   &::after {
