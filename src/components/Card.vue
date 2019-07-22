@@ -45,16 +45,28 @@
         </h3>
         <p class="c-card__meal">{{data.dinner}}</p>
       </div>
+
+      <div v-if="loading" class="c-card__loader-wrap">
+        <Loader/>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Loader from "./Loader";
 
 export default {
   name: "Card",
-
+  components: {
+    Loader
+  },
+  data() {
+    return {
+      loading: false
+    };
+  },
   props: {
     day: {
       validator: value => ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].indexOf(value) !== -1,
@@ -74,6 +86,12 @@ export default {
     },
     openMeal(data, type) {
       this.$emit("openMeal", data, type);
+    },
+    activeLoader() {
+      this.loading = true;
+    },
+    removeLoader() {
+      this.loading = false;
     }
   },
   computed: {
@@ -225,6 +243,24 @@ export default {
     font-family: $gloria;
     line-height: 1.2;
     padding: 15px 30px 15px 20px;
+  }
+
+  /**
+  * Loader wrap
+  */
+
+  &__loader-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 42px;
+    left: 0;
+
+    width: 100%;
+    height: calc(100% - 42px);
+    background-color: rgba($beige, 0.5);
   }
 }
 </style>
