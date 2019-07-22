@@ -8,6 +8,10 @@
     </header>
 
     <main class="c-card__content">
+      <div v-if="loading" class="c-card__loader-wrap">
+        <Loader small/>
+      </div>
+
       <div class="c-card__content__item" v-if="data.breakfast">
         <h3 class="c-card__header-type">
           <span
@@ -44,10 +48,6 @@
           </span>
         </h3>
         <p class="c-card__meal">{{data.dinner}}</p>
-      </div>
-
-      <div v-if="loading" class="c-card__loader-wrap">
-        <Loader/>
       </div>
     </main>
   </div>
@@ -257,6 +257,7 @@ export default {
     position: absolute;
     top: 42px;
     left: 0;
+    z-index: 1;
 
     width: 100%;
     height: calc(100% - 42px);
