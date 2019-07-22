@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/weekly-meal/precache-manifest.1cd605b0954b7a36b24acf1a4a68993b.js"
+  "/weekly-meal/precache-manifest.a5ddace22e9fd98d957c21adabb8a33f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "weekly-meal"});
