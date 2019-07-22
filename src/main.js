@@ -7,6 +7,7 @@ import firebase from "firebase";
 import "./registerServiceWorker";
 import { library } from "./utils/icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import VueScrollTo from "vue-scrollto";
 
 Vue.config.productionTip = false;
 Vue.component("font-awesome-icon", FontAwesomeIcon);
@@ -24,6 +25,9 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const database = firebase.firestore();
 
+Vue.use(VueScrollTo, {
+  offset: -80
+});
 
 firebase.auth().onAuthStateChanged(() => {
   new Vue({
