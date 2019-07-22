@@ -10,12 +10,15 @@
             @addMeal="() => openModal('modal-add', item.day, null)"
             @removeMeal="typeMeal => removeMeal(typeMeal, item.day)"
             @openMeal="(data, type, day) => openMeal(data, type, item.day)"
-            :ref="'card'-item.day"
+            :ref="item.day"
           ></Card>
         </li>
       </ul>
 
-      <p v-if="loading">Loading ...</p>
+      <div class="dashboard__loader-wrap" v-if="loading">
+        <Loader/>
+        <p class="dashboard__loader-wrap__text">Loading ...</p>
+      </div>
     </main>
 
     <Modal v-if="modal.isOpen && modal.name === 'modal-add'" @close="closeModal" title="Add Meal">
@@ -39,6 +42,7 @@ import NavHeader from "../components/NavHeader";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import MealForm from "../components/MealForm";
+import Loader from "../components/Loader";
 
 export default {
   name: "dashboard",
@@ -46,7 +50,8 @@ export default {
     NavHeader,
     Card,
     Modal,
-    MealForm
+    MealForm,
+    Loader
   },
   data() {
     return {
@@ -77,8 +82,11 @@ export default {
     },
     removeMeal(typeMeal, day) {
       this.$store.commit("removeDayMeal", { type: typeMeal, day });
+      this.$refs[day][0].activeLoader();
+
       updateBoard(this.board, this.user.id).then(() => {
         this.$forceUpdate();
+        this.$refs[day][0].removeLoader();
       });
     }
   },
@@ -104,6 +112,25 @@ export default {
   max-width: 1280px;
   margin: 0px auto;
   padding: 30px 20px;
+
+  /**
+  * Loader wrap
+  */
+
+  &__loader-wrap {
+    width: 100%;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 100px 0;
+
+    &__text {
+      font-weight: 700;
+      padding-top: 15px;
+    }
+  }
 
   /**
   * Days list container
