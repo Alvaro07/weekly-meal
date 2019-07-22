@@ -20,7 +20,7 @@
 
     <Modal v-if="modal.isOpen && modal.name === 'modal-add'" @close="closeModal" title="Add Meal">
       <MealForm
-        @closeFormModal="closeModal()"
+        @closeFormModal="closeModal(modal.thisDay)"
         :day="modal.thisDay"
         :mealSelect="modal.mealSelected"
       ></MealForm>
@@ -64,8 +64,12 @@ export default {
     openModal(modal, day, dataSelected) {
       this.modal = { ...this.modal, name: modal, isOpen: true, thisDay: day, mealSelected: dataSelected };
     },
-    closeModal() {
+    closeModal(element) {
       this.modal = { ...this.modal, name: null, isOpen: false, mealSelected: null };
+
+      if (element) {
+        this.$scrollTo(`#${element}`);
+      }
     },
     openMeal(data, type, day) {
       let dataSelected = { meal: data, type };

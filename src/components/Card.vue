@@ -1,12 +1,12 @@
 <template>
-  <div class="c-card">
-    <header class="c-card__header">
+  <div class="c-card" :id="day">
+    <header class="c-card__header" @click.prevent="addMeal">
       <h3 class="c-card__header__day">{{ day | capitalize }}</h3>
-
-      <span class="c-card__header__add-button" @click.prevent="addMeal">
+      <span class="c-card__header__add-button">
         <font-awesome-icon icon="plus"/>
       </span>
     </header>
+
     <main class="c-card__content">
       <div class="c-card__content__item" v-if="data.breakfast">
         <h3 class="c-card__header-type">
@@ -101,30 +101,35 @@ export default {
   */
 
   &__header {
+    --button-color: #{$darkGreen};
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background: $silver;
+    cursor: pointer;
+
+    &:hover {
+      .c-card__header__day,
+      .c-card__header__add-button {
+        --button-color: #{$orange};
+      }
+    }
 
     &__day {
       text-align: center;
       font-size: 2.2rem;
       font-weight: 500;
-      color: $darkGreen;
+      color: var(--button-color);
+      transition: 0.3s all ease;
     }
 
     &__add-button {
-      --button-color: #{$darkGreen};
-
       font-size: 2.1rem;
       color: var(--button-color);
       cursor: pointer;
       transition: 0.3s all ease;
-
-      &:hover {
-        --button-color: #{$orange};
-      }
     }
   }
 
