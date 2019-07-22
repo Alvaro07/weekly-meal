@@ -40,24 +40,28 @@
       @onClick="() => addMeal()"
     />
 
-    <p v-if="loading">Loading ...</p>
+    <div class="form__loader-wrap" v-if="loading">
+      <Loader/>
+    </div>
   </form>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { updateBoard } from "../firebase/functions";
+import { eventBus } from "../event-bus.js";
 import Tag from "../components/Tag";
 import TextareaField from "../components/TextareaField";
 import Button from "../components/Button";
-import { updateBoard } from "../firebase/functions";
-import { eventBus } from "../event-bus.js";
+import Loader from "../components/Loader";
 
 export default {
   name: "meal-form",
   components: {
     Tag,
     TextareaField,
-    Button
+    Button,
+    Loader
   },
   props: ["day", "mealSelect"],
   data() {
@@ -125,5 +129,24 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+/**
+  * Loader wrap
+  */
+
+.form__loader-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 51px;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: calc(100% - 51px);
+  border-radius: 5px;
+  background-color: rgba(white, 0.5);
+}
 </style>
