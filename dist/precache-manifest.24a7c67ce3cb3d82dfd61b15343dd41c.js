@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/weekly-meal/js/app.759f04b3.js"
   },
   {
-    "revision": "90cf18f6081b9daf3571dd27391b04cf",
+    "revision": "d52de9a9d494db17d5c8f0de74ad2088",
     "url": "/weekly-meal/index.html"
   },
   {
