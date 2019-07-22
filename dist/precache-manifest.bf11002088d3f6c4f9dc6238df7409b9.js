@@ -8,16 +8,16 @@ self.__precacheManifest = [
     "url": "/weekly-meal/js/chunk-vendors.07d8db3e.js"
   },
   {
-    "revision": "365c256352e272500787",
-    "url": "/weekly-meal/js/app.e48dabc7.js"
+    "revision": "a9b9e37d91687fffdad1",
+    "url": "/weekly-meal/js/app.ec3e9c67.js"
   },
   {
-    "revision": "0c6152ebb5b21a3da7b3aa10896c6d23",
+    "revision": "33cb7808c85d660a4d7eb28cbcb0d5e7",
     "url": "/weekly-meal/index.html"
   },
   {
-    "revision": "365c256352e272500787",
-    "url": "/weekly-meal/css/app.f6924931.css"
+    "revision": "a9b9e37d91687fffdad1",
+    "url": "/weekly-meal/css/app.f3019503.css"
   },
   {
     "revision": "c36480a3e922af22d26eeeb2c728317d",
